@@ -1,0 +1,33 @@
+*, ::after, ::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu';
+}
+
+
+
+:root {
+    /* primary colors */
+    --Marine-blue: hsl(213, 96%, 18%);
+    --Purplish-blue: #473dff;
+    --Pastel-blue: hsl(228, 100%, 84%);
+    --Light-blue: hsl(206, 94%, 87%);
+    --Strawberry-red: hsl(354, 84%, 57%);
+
+    /* Neatral colors */
+
+    --Cool-gray: #9699ab;
+    --Light-gray: hsl(229, 24%, 87%);
+    --Magnolia: hsl(217, 100%, 97%);
+    --Alabaster: hsl(231, 100%, 99%);
+    --White: hsl(0, 0%, 100%);
+
+    /* Fonts */
+
+    --pg-size:16px;
+    --w-400:400;
+    --w-500:500;
+    --w-700:700;
+
+}

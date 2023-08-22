@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Links & Styles -->
+    <link rel="stylesheet" href="assets/css/root-styles.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/mobile.css">
+    <link rel="shortcut icon" href="assets/images/favicon-32x32.png" type="image/png" size="32x32">
+     
+    <title>Finish your order </title>
+</head>
+<body>
+    <div class="container">
+        <div class="sid_bar"> 
+            <div class="containe">
+                <div class="step-active step-indicator step1">
+                    <div class="step_nmbr active">1</div>
+                    <div class="step_title">
+                        <p>STEP 1</p>
+                        <h5>YOUR INFO</h5>
+                    </div>
+                </div>
+                <div class="step-active step-indicator step2">
+                    <div class="step_nmbr">2</div>
+                    <div class="step_title">
+                        <p>STEP 2</p>
+                        <h5>SELECT PLAN</h5>
+                    </div>
+                </div>
+                <div class="step-active step-indicator step3">
+                    <div class="step_nmbr">3</div>
+                    <div class="step_title">
+                        <p>STEP 3</p>
+                        <h5>ADD-ONS</h5>
+                    </div>
+                </div>
+                <div class="step-active step-indicator step4">
+                    <div class="step_nmbr">4</div>
+                    <div class="step_title">
+                        <p>STEP 4</p>
+                        <h5>SUMMARY</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form action="" id="form">
+            <div class="rightbar">
+                <div class="step step1" id="step1">
+                    <div class="content step1">
+                        <div class="containe">
+                            <h2>Personal info</h2>
+                            <p>Please provide your name, email address, and phone number.</p>
+                            <div class="infos">
+                                <div>
+                                    <label class="nameBox">
+                                        <p>Name</p> 
+                                        <p id="alert-name" class="alert nameText">Invalid Name</p>
+                                        <input type="text" id="name" class="name" placeholder="e.g. Stephen King">
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="emailBox">
+                                        <p>Email Address</p> 
+                                        <p id="alert-email" class="alert emailText" >Invalid email</p>
+                                        <input type="email" id="email" class="mail" placeholder="e.g. stephenking@lorem.com">
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="passBox">
+                                        <p>Phone Number</p> 
+                                        <p id="alert-phone" class="alert phoneText">At least 6 characters</p>
+                                        <input type="tel" max="11" id="phone" class="phone" placeholder="e.g. +123 456 7890">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step step2 " id="step2">
+                    <div class="content step2">
+                        <div class="containe">
+                            <h2>Select your plan</h2>
+                            <p>You have the option of monthly or yearly billing.
+                            </p>
+                            <div class="cards monthly">
+                                <div class="card card-1" onclick="selectPlan('1')">
+                                    <input type="checkbox" name="billing" id="card-input">
+                                    <img src="assets/images/icon-arcade.svg" alt="">
+                                    <p>Arcade</p>
+                                    <p id="price" class="price" data-price="price">$9/mo</p>
+                                </div>
+                                <div class="card card-2" onclick="selectPlan('2')">
+                                    <input type="radio" name="billing" id="card-input">
+                                    <img src="assets/images/icon-advanced.svg" alt="">
+                                    <p>Advanced</p>
+                                    <p id="price" class="price" data-price="price">$12/mo</p>
+                                </div>
+                                <div class="card card-3" onclick="selectPlan('3')">
+                                    <input type="radio" name="billing" id="card-input">
+                                    <img src="assets/images/icon-pro.svg" alt="">
+                                    <p>Pro</p>
+                                    <p id="price" class="price" data-price="price">$15/mo</p>
+                                </div>
+                            </div>
+                            <div class="choose_plan">
+                                <p>Monthly</p>
+                                <label for="change_plan">
+                                    <input type="checkbox" name="" id="change_plan">
+                                    <span class="slide"></span>
+                                </label>
+                                <p>Yearly</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step step3 " id="step3">
+                    <div class="content step3">
+                        <div class="containe">
+                            <h2>Pick add-ons</h2>
+                            <p>Add-ons help enhance your gaming experience.</p>
+                            <div class="cards">
+                                <div class="card card-1">
+                                    <input type="checkbox" name="" id="online-service">
+                                    <label for="check_pick"></label>
+                                    <div class="ckeck_details">
+                                        <h2>Online service</h2>
+                                        <p>Access to multiplayer games</p>
+                                    </div>
+                                    <p class="price" data-charge="charge">+$1/mo</p>
+                                </div> 
+                                <div class="card card-2">
+                                    <input type="checkbox" name="" id="larger-storage">
+                                    <label for="check_pick"></label>
+                                    <div class="ckeck_details">
+                                        <h2>Larger storage</h2>
+                                        <p>Extra 1TB of cloud save</p>
+                                    </div>
+                                    <p class="price" data-charge="charge">+$2/mo</p>
+                                </div>
+                                <div class="card card-3">
+                                    <input type="checkbox" name="" id="cust-profile">
+                                    <label for="check_pick"></label>
+                                    <div class="ckeck_details">
+                                        <h2>Customizable Profile</h2>
+                                        <p>Custom theme on your profile</p>
+                                    </div>
+                                    <p class="price" data-charge="charge">+$2/mo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step step4 " id="step4">
+                    <div class="content step4">
+                        <div class="containe">
+                            <h2>Finishing up</h2>
+                            <p>Double-check everything looks OK before confirming.</p>
+                            <div class="checkout">
+                                <div class="selected_plan">
+                                    <div class="plan_name">
+                                        <p>Arcade</p>
+                                        <br><p><a href="">change</a></p>
+                                    </div>
+                                    
+                                    <div class="price">$12/mo</div>
+                                </div>
+                                <div class="selected_addons">
+                                    <div class="addons addons-1">
+                                        <p></p>
+                                        <p class="price">1$/mo</p>
+                                    </div>
+                                    <div class="addons addons-2">
+                                        <p></p>
+                                        <p class="price">1$/mo</p>
+                                    </div>
+                                    <div class="addons addons-3">
+                                        <p></p>
+                                        <p class="price">1$/mo</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="total">
+                                <p>Total (per <span>month</span>)</p>
+                                <p id="total-price">+$12/mo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step step5" id="step5">
+                    <div class="content step5">
+                        <div class="containe">
+                            <img src="assets/images/icon-thank-you.svg" alt="">
+                            <h2>Thank you!</h2>
+                            <p>Thanks for confirming your subscription! We hope you have fun
+                                using our platform. If you ever need support, please feel free
+                                to email us at support@loremgaming.com.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btns">
+                <button class="btn go_back" id="back" >Go back</button>
+                <button class="btn next" id="next">Next Step</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- scripts -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
