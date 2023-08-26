@@ -164,6 +164,7 @@
     }
     .rightbar .alert {
         visibility: hidden;
+        /* visibility: visible; */
         /* display: none !important; */
         float: right;
         color: var(--Strawberry-red) !important;

@@ -15,40 +15,35 @@ let slidlength = sliderSteps.length;
 let slidActivelength = sliderStepsActive.length;
 
 checker();
+// validatForm(currentStep);
 
 next.addEventListener('click', nextStep);
 back.addEventListener('click', backStep);
 
 function nextStep() {
-    // console.log("next");
-    // if(fullName.value !== '') {
-        if(currentStep == (slidlength)){
-            return false
-        }else {
             if( currentStep === 0) {
                 
             }else {
-                // console.log("no")
-            }
+                
                 currentStep++;
                 checker();
-                
-        }
+                // validatForm(currentStep);
+            }
     }
 
 function backStep() {
-    // console.log("back");
     if(currentStep == 1){
         return false
     }else {
         currentStep--;
-        checker()
+        checker();
+        // validatForm(currentStep);
     }
 }
 
 function checker() {
     removeActive();
-
+    validatForm(currentStep);
     sliderSteps[currentStep - 1].classList.add('active');
     sliderStepsActive[currentStep - 1].classList.add('active');
 
@@ -75,41 +70,22 @@ function removeActive() {
     })
 }
 
+function validatForm(input) {
+
+            const inputs = sliderSteps[input - 1].querySelectorAll('input');
+            console.log(inputs.values);
+            if(inputs.value === "") {
+                console.log(inputs.value)
+                console.log("empty")
+                // document.querySelector('.alert').style.visibility = 'visible';
+                // return false;
+            }
+            
+};
+
 form.addEventListener('submit', (e)=> {
     e.preventDefault();
-    // if(checkValidity()) {
-    //     form.submit()
-    // }
-})
-// let inputs = Array.from(document.querySelectorAll('.step .content .containe'));
-// console.log(inputs);
-
-// inputs.forEach(sliderSteps => {
-//     if(sliderSteps == currentStep) {
-//         // console.log(currentStep)
-//     }else {
-//         // console.log("curretn step error")
-//     }
-// })
-
-// function stepsCheck()
-
-
-let nmb1 = [10, 30, 10, 20]; //70
-let nmb2 = [30, 20, 10]; //60
-
-// console.log(Math.max(...nmb2) * ([...nmb1, ...nmb2]).length)
-
-
-
-
-
-
-
-
-
-
-
+});
 
     fullName.addEventListener('input', ()=> {
         const namePattern = /^[a-zA-Z]+ [a-zA-Z]+$/;
@@ -136,10 +112,10 @@ let nmb2 = [30, 20, 10]; //60
         }
     });
     phone.addEventListener('input', ()=> {
-        // const phonePattern = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}/;
+        const phonePattern = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}/;
         const alert = document.querySelector('#alert-phone');
     
-        if(phone.value.length <= 10) {
+        if(!phone.value.match(phonePattern)) {
             phone.style.border = '1px solid #473dff';
             alert.style.visibility = "hidden";
         }else {
@@ -255,6 +231,12 @@ let nmb2 = [30, 20, 10]; //60
             document.querySelector('.addons-3').innerHTML = '';
         }
     });
+
+
+
+
+
+
 // }
 
 // Step 4 
