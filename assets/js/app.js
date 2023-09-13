@@ -5,372 +5,349 @@ const phone = document.getElementById('phone');
 const back = document.getElementById('back');
 const next = document.getElementById('next');
 const steps = document.querySelectorAll('#step');
+
 const stepsActive = document.querySelectorAll('.step-indicator');
+let sliderSteps = Array.from(document.querySelectorAll('.step'));
+let sliderCount = sliderSteps.length;
+// console.log(sliderCount)
 let currentStep = 1;
 
-let sliderSteps = Array.from(document.querySelectorAll('.step'));
-let sliderStepsActive = Array.from(stepsActive);
-// console.log(sliderStepsActive)
-let slidlength = sliderSteps.length;
-let slidActivelength = sliderStepsActive.length;
+checker()
 
-checker();
-// validatForm(currentStep);
-
-next.addEventListener('click', nextStep);
-back.addEventListener('click', backStep);
+form.addEventListener('submit', (e)=> {
+    e.preventDefault();
+})
+next.addEventListener('click', nextStep)
+back.addEventListener('click', backStep)
 
 function nextStep() {
-            if( currentStep === 0) {
-                
-            }else {
-                
-                currentStep++;
-                checker();
-                // validatForm(currentStep);
-            }
+    if (checkValidity()) {
+    //   if (currentStep == sliderCount) {
+    //     return false;
+    //   } else {
+        currentStep++;
+        checker();
+        sum();
+    //   }
     }
+}
 
 function backStep() {
-    if(currentStep == 1){
+    if(currentStep === 1) {
         return false
     }else {
         currentStep--;
-        checker();
-        // validatForm(currentStep);
+        checker()
     }
 }
 
 function checker() {
-    removeActive();
-    validatForm(currentStep);
-    sliderSteps[currentStep - 1].classList.add('active');
-    sliderStepsActive[currentStep - 1].classList.add('active');
+    removeActive()
 
-    if(currentStep == slidlength) {
-        next.textContent = 'validate';
+    sliderSteps[currentStep - 1].classList.add('active');
+
+    if(currentStep == 5) {
+        back.style.display = 'none'
+        next.style.display = 'none'
+        return false
     }else {
-        next.textContent = 'Next Step';
+        stepsActive[currentStep - 1].classList.add('active');
     }
 
-    if(currentStep == 1) {
-        back.classList.add('disabled')
-    }else{
-        back.classList.remove('disabled')
+    if(currentStep == 4) {
+        next.innerText = "Confirm";
+    }else {
+        next.innerText = "Next Step";
+    }
+
+    if(currentStep === 1) {
+        back.style.display = 'none'
+    }else {
+        back.style.display = 'block'
+    }
+
+    if(currentStep == sliderCount ) {
+        console.log("this is the last step")
     }
 }
-
 
 function removeActive() {
-    sliderSteps.forEach((step)=> {
-        step.classList.remove('active');
+    sliderSteps.forEach((el)=> {
+        el.classList.remove("active")
     })
-    sliderStepsActive.forEach((stepActive)=> {
-        stepActive.classList.remove('active');
+    stepsActive.forEach((el)=> {
+        el.classList.remove("active")
     })
 }
 
-function validatForm(input) {
+// function checkValidity() {
+//   let currentInputs = sliderSteps[currentStep - 1].querySelectorAll("input");
+//   // console.log(currentInputs)
 
-            const inputs = sliderSteps[input - 1].querySelectorAll('input');
-            console.log(inputs.values);
-            if(inputs.value === "") {
-                console.log(inputs.value)
-                console.log("empty")
-                // document.querySelector('.alert').style.visibility = 'visible';
-                // return false;
+//   currentInputs.forEach(currentiInput => {
+//     //   console.log(input);
+//     if (currentiInput.value === "") {
+//       console.log("please fill inputs");
+//       return false;
+//     }
+
+//     return true
+//   });
+// }
+
+function checkValidity() {
+    let currentInputs = sliderSteps[currentStep - 1].querySelectorAll('input');
+
+    let allInputsFilled = true;
+    let checkBoxChecked = false;
+
+    for (let i = 0; i < currentInputs.length; i++) {
+        if (currentInputs[i].type === 'checkbox') {
+            if (currentInputs[i].checked) {
+                checkBoxChecked = true;
             }
-            
+        } else if (currentInputs[i].value === "") {
+            allInputsFilled = false;
+        }
+    }
+
+    if (!allInputsFilled) {
+        console.log("Please fill all text inputs.");
+        return false;
+    }
+
+    if (!checkBoxChecked) {
+        console.log("Please check the checkbox.");
+        return false;
+    }
+
+    console.log("All text inputs are filled, and the checkbox is checked.");
+    return true;
+}
+
+
+
+// ############ first step #################
+
+const nameReg = /^[a-zA-Z]+ [a-zA-Z]+$/;
+const emailReg = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$/;
+const phoneReg = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}/;
+
+fullName.addEventListener('input', ()=> {
+    const alertName = document.querySelector('#alert-name');
+
+    if(fullName.value !== '' && fullName.value.match(nameReg)) {
+        fullName.style.borderColor = "var(--Cool-gray)";
+        alertName.style.visibility = "hidden";
+        return true
+    }else {
+        fullName.style.borderColor = "var(--Strawberry-red)";
+        alertName.style.visibility = "visible";
+    }
+})
+
+email.addEventListener('input', ()=> {
+    const alertEmail = document.querySelector('#alert-email');
+
+    if(email.value !== '' && email.value.match(emailReg)) {
+        email.style.borderColor = "var(--Cool-gray)";
+        alertEmail.style.visibility = "hidden";
+        return true
+    }else {
+        email.style.borderColor = "var(--Strawberry-red)";
+        alertEmail.style.visibility = "visible";
+    }
+})
+
+phone.addEventListener('input', ()=> {
+    const alertPhone = document.querySelector('#alert-phone');
+
+    if(phone.value !== '' ) {
+        phone.style.borderColor = "var(--Cool-gray)";
+        alertPhone.style.visibility = "hidden";
+        return true
+    }else {
+        phone.style.borderColor = "var(--Strawberry-red)";
+        alertPhone.style.visibility = "visible";
+    }
+})
+
+// #########################################
+
+// ############ second step Monthly Yearly Select #################
+
+const MYSelect = document.querySelector('.choose_plan input')
+
+const prices = { 
+    monthly: {
+        arcade : 9,
+        advance : 12,
+        pro : 15
+    },
+    yearly: {
+        arcade : 90,
+        advance : 120,
+        pro : 150
+    }
 };
 
-form.addEventListener('submit', (e)=> {
-    e.preventDefault();
-});
+const pricesEX = { 
+    monthly: {
+        os : 1,
+        ls : 2,
+        cp : 2
+    },
+    yearly: {
+        os : 10,
+        ls : 20,
+        cp : 20
+    }
+};
 
-    fullName.addEventListener('input', ()=> {
-        const namePattern = /^[a-zA-Z]+ [a-zA-Z]+$/;
-        const alert = document.querySelector('#alert-name');
+
+MYSelect.addEventListener('click', (e)=> {
+    const pricesS2 = sliderSteps[1].querySelectorAll('.price');
+    const pricesS3 = sliderSteps[2].querySelectorAll('.price');
+
+
+    if(MYSelect.checked) {
+        pricesS2[0].innerHTML = "$" + prices.yearly.arcade + "/yr"; // $9/yr
+        pricesS2[1].innerHTML = "$" + prices.yearly.advance + "/yr"; // $120/yr
+        pricesS2[2].innerHTML = "$" + prices.yearly.pro + "/yr"; // $150/yr
+        
+        pricesS3[0].innerHTML = "+$" + pricesEX.yearly.os + "/yr"; // $9/yr
+        pricesS3[1].innerHTML = "+$" + pricesEX.yearly.ls + "/yr"; // $120/yr
+        pricesS3[2].innerHTML = "+$" + pricesEX.yearly.cp + "/yr"; // $150/yr
+
+    }else {
+        pricesS2[0].innerHTML = "$" + prices.monthly.arcade + "/mo"; // $9/mo
+        pricesS2[1].innerHTML = "$" + prices.monthly.advance + "/mo"; // $120/mo
+        pricesS2[2].innerHTML = "$" + prices.monthly.pro + "/mo"; // $150/mo
+        
+        pricesS3[0].innerHTML = "+$" + pricesEX.monthly.os + "/mo"; 
+        pricesS3[1].innerHTML = "+$" + pricesEX.monthly.ls + "/mo"; 
+        pricesS3[2].innerHTML = "+$" + pricesEX.monthly.cp + "/mo"; 
+    }
     
-        if(fullName.value.match(namePattern)) {
-            fullName.style.border = '1px solid #473dff';
-            alert.style.visibility = "hidden";
-        }else {
-            fullName.style.border = '1px solid #ed3548';
-            alert.style.visibility = "visible";
-        }
-    });
-    email.addEventListener('input', ()=> {
-        const emailPattern = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$/;
-        const alert = document.querySelector('#alert-email');
-    
-        if(email.value.match(emailPattern)) {
-            email.style.border = '1px solid #473dff';
-            alert.style.visibility = "hidden";
-        }else {
-            email.style.border = '1px solid #ed3548';
-            alert.style.visibility = "visible";
-        }
-    });
-    phone.addEventListener('input', ()=> {
-        const phonePattern = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}/;
-        const alert = document.querySelector('#alert-phone');
-    
-        if(!phone.value.match(phonePattern)) {
-            phone.style.border = '1px solid #473dff';
-            alert.style.visibility = "hidden";
-        }else {
-            phone.style.border = '1px solid #ed3548';
-            alert.style.visibility = "visible";
-        }
-    });
-    
-    
-    // monthly to yearly radio switch
-    const ChosePlan = document.getElementById('change_plan');
-    const price = document.querySelectorAll('.price');
-    const charge = document.querySelectorAll('#charge');
-    // console.log(price, charge);
-    const selectedCard = document.querySelectorAll('.step3 .card');
-    const prices = [
-        {   monthly:'$9/mo', 
-            yearly:'$90/yr'},
-        {   monthly:'$12/mo', 
-            yearly:'$120/yr'} ,
-        {   monthly:'$15/mo', 
-            yearly:'$150/yr'},
-    ];
-    const charges = [
-        {   monthly:'$1/mo', 
-            yearly:'$10/yr'},
-        {   monthly:'$2/mo', 
-            yearly:'$20/yr'} ,
-        {   monthly:'$2/mo', 
-            yearly:'$20/yr'},
-    ];
-    
-    
-    // Select your plan card 
-    const planName = document.querySelector('.plan_name p');
-    
-    const selectPlan = (cardNo) => {
-        const allCards = document.querySelectorAll('.card');
-        allCards.forEach((element) => {
-            element.classList.remove(["active"]);
-            document.querySelector('.plan_name p').innerHTML ;
+
+})
+
+// ##########################################
+
+// ############ second step #################
+
+const cardS2 = document.querySelectorAll('.step2 .monthly .card')
+const cardPlanName = document.querySelectorAll('.step2 .monthly .card .plan-name')
+const cardPlanPrice = document.querySelectorAll('.step2 .monthly .card .price')
+const choosenPlanName = document.querySelector('.checkout .selected_plan p');
+const choosenPlanPrice = document.querySelector('.checkout .selected_plan .price');
+
+const cardExName = document.querySelectorAll('.step3 .cards .card .plan-name')
+const cardEXPrice = document.querySelectorAll('.step3 .cards .card .price')
+const choosenExName = document.querySelector('.checkout .selected_addons');
+// const choosenExPrice = document.querySelector('.checkout .selected_plan .price');
+
+
+cardS2.forEach((cardEl2, i) => {
+    cardEl2.addEventListener('click', (e)=> {
+        cardS2.forEach(card => {
+            card.classList.remove('active');
         });
-        const selectedCard = document.querySelector('.card-' + cardNo);
-        selectedCard.classList.add(["active"]);
-    };
-    const selectPlanName = selectPlan;
-    selectPlanName.value = document.querySelector('.step2 .card p').innerHTML;
-    
-    let MY ;
-    
-    ChosePlan.addEventListener('click', ($event)=> {    
-        if ($event.target.checked) {
-          prices.forEach((priceTag, index) => {
-            priceTag.innerHTML = prices[index].yearly + '<p class="bonus">2 months free</p>';
-            MY = "monthly";
-          });
-        } else {
-          prices.forEach((priceTag, index) => {
-            priceTag.innerHTML = prices[index].monthly;
-            MY = "yearly";
-          });
+        cardEl2.classList.add('active');
+
+        if(cardEl2.classList.contains('active')) {
+            choosenPlanName.innerHTML = cardPlanName[i].innerText;
+            choosenPlanPrice.innerHTML = cardPlanPrice[i].innerText;
         }
-        nextStep()
-        console.log(MY)
-    });
-    
-    // Step 3
-    ChosePlan.addEventListener('change', ($event)=> {    
-           if ($event.target.checked) {
-            console.log(charge);
-          charge.forEach((chargeTag, i) => {
-            chargeTag.innerHTML = charges[i].yearly;
-            document.querySelector('.plan_name p').textContent = ' (Yearly)';
-        });
-        } else {
-          charge.forEach((charge, i) => {
-            charge.innerHTML = charges[i].monthly;
-            document.querySelector('.plan_name p').textContent = ' (Monthly)';
-          });
-        }   
-    });
-    
-    
-    // console.log(selectedCard);
-    document.querySelector('.step3 #online-service').addEventListener('change', ($event)=> {
-        if($event.target.checked) {
-            selectedCard[0].classList.add('active');
-            document.querySelector('.addons-1').innerHTML = '<p>Online Services</p>' + charges[0].monthly
-            
-            
+    })
+})
+
+// #########################################
+
+
+
+
+// ############ third step #################
+const cardS3 = document.querySelectorAll('.step3 .cards .card');
+
+cardS3.forEach((cardEl3, i) => {
+
+    cardEl3.classList.remove('active')
+    cardEl3.addEventListener('click', (e)=> {
+        e.target.parentNode.classList.toggle('active');
+
+        if(cardEl3.classList.contains('active')) {
+            choosenExName.innerHTML += `
+            <div class="addons">
+                <p>${cardExName[i].innerText}</p>
+                <p class="price">${cardEXPrice[i].innerText}</p>
+            </div>
+        `;
         }else {
-            selectedCard[0].classList.remove('active');
-            document.querySelector('.addons-1').innerHTML = '';
+            choosenExName.innerHTML = `
+            <div class="addons">
+                <p>${cardExName[i].innerText}</p>
+                <p class="price">${cardEXPrice[i].innerText}</p>
+            </div>
+        `;
         }
+    })
+})
+
+// #########################################
+
+// ############ checkout step  #################
+
+
+
+function sum() {
+    const checkOut = document.querySelectorAll('.step4 .price');
+  if (currentStep == 4) {
+    cardS3.forEach((card) => {
+      if (card.classList.contains("active")) {
+        console.log("current step is 4");
+        const allSelectedAddons = document.querySelectorAll(".checkout .selected_addons .addons");
+        let allSelectedAddonsPri = parseInt(
+          Array.from(
+            document.querySelectorAll(
+              ".checkout .selected_addons .addons .price"
+            )
+          )
+        );
+      }
     });
-    
-    // const selectedCard2 = document.querySelector('.step3 .card2');
-    document.querySelector('.step3 #larger-storage').addEventListener('change', ($event)=> {
-        if($event.target.checked) {
-            selectedCard[1].classList.add('active');
-            document.querySelector('.addons-2').innerHTML = '<p>Larger Storage</p>';
-        }else {
-            selectedCard[1].classList.remove('active');
-            document.querySelector('.addons-2').innerHTML = '';
-        }
-    });
-    document.querySelector('.step3 #cust-profile').addEventListener('change', ($event)=> {
-        if($event.target.checked) {
-            selectedCard[2].classList.add('active');
-            document.querySelector('.addons-3').innerHTML = '<p>Customizable Profile</p>';
-        }else {
-            selectedCard[2].classList.remove('active');
-            document.querySelector('.addons-3').innerHTML = '';
-        }
-    });
+  }
 
+  let priceNumber = /\d+/g;
+  let arr = [];
 
+  for (i = 0; i < checkOut.length; i++) {
+    let textContent = checkOut[i].innerText;
 
+    if (textContent.match(priceNumber)) {
+      let nms = textContent.match(priceNumber);
 
+      for (j = 0; j < nms.length; j++) {
+        arr.push(nms[j]);
+        // console.log(arr);
+      }
 
+      const sum = arr.reduce(
+        (accumulator, currentValue) => +accumulator + +currentValue,
+        0
+      );
 
-// }
+      let total = document.querySelector("#total-price");
+      total.innerHTML = "$" + sum + "/mo";
 
-// Step 4 
+      if(MYSelect.checked) {
+        total.innerHTML = "$" + sum + "/yr"
+      }else {
+        total.innerHTML = "$" + sum + "/mo"
+      }
+    }
+  }
+}
 
-// document.querySelector('')
-
-// select form elements
-// const form = document.getElementById("form");
-// const name = document.getElementById("name");
-// const email = document.getElementById("email");
-// const phone = document.getElementById("phone");
-// const monthly = document.querySelector(".monthly");
-// const changePlan = document.getElementById("change_plan");
-
-// // select next and prev buttons
-// const nextBtns = document.querySelectorAll(".next-btn");
-// const prevBtns = document.querySelectorAll(".prev-btn");
-
-// // select all steps
-// const steps = document.querySelectorAll(".step");
-
-// // set current step
-// let currentStep = 0;
-
-// // handle form submit
-// form.addEventListener("submit", (e) => {
-//   e.preventDefault();
-
-//   // perform validation on form fields
-//   if (validateForm()) {
-//     // submit the form
-//     form.submit();
-//   }
-// });
-
-// // handle next button click
-// nextBtns.forEach((btn) => {
-//   btn.addEventListener("click", () => {
-//     if (validateForm()) {
-//       // move to next step
-//       currentStep++;
-//       updateSteps();
-//     }
-//   });
-// });
-
-// // handle prev button click
-// prevBtns.forEach((btn) => {
-//   btn.addEventListener("click", () => {
-//     // move to previous step
-//     currentStep--;
-//     updateSteps();
-//   });
-// });
-
-// // function to update steps
-// function updateSteps() {
-//   // hide all steps
-//   steps.forEach((step) => {
-//     step.style.display = "none";
-//   });
-
-//   // show current step
-//   steps[currentStep].style.display = "block";
-
-//   // update step indicators
-//   const indicators = document.querySelectorAll(".step_nmbr");
-//   indicators.forEach((indicator, index) => {
-//     if (index === currentStep) {
-//       indicator.classList.add("active");
-//     } else {
-//       indicator.classList.remove("active");
-//     }
-//   });
-
-//   // disable prev button on first step
-//   if (currentStep === 0) {
-//     prevBtns.forEach((btn) => {
-//       btn.disabled = true;
-//     });
-//   } else {
-//     prevBtns.forEach((btn) => {
-//       btn.disabled = false;
-//     });
-//   }
-
-//   // change next button text on last step
-//   if (currentStep === steps.length - 1) {
-//     nextBtns.forEach((btn) => {
-//       btn.textContent = "Submit";
-//     });
-//   } else {
-//     nextBtns.forEach((btn) => {
-//       btn.textContent = "Next";
-//     });
-//   }
-// }
-
-// // function to validate form fields
-// function validateForm() {
-//   // reset all error messages
-//   const errorMessages = document.querySelectorAll(".alert");
-//   errorMessages.forEach((message) => {
-//     message.style.display = "none";
-//   });
-
-//   // check if name field is not empty
-//   if (name.value.trim() === "") {
-//     const alertName = document.getElementById("alert-name");
-//     alertName.style.display = "block";
-//     return false;
-//   }
-
-//   // check if email field is valid
-//   const emailRegex = /^\S+@\S+\.\S+$/;
-//   if (!emailRegex.test(email.value)) {
-//     const alertEmail = document.getElementById("alert-email");
-//     alertEmail.style.display = "block";
-//     return false;
-//   }
-
-//   // check if phone field is valid
-//   if (phone.value.length < 6) {
-//     const alertPhone = document.getElementById("alert-phone");
-//     alertPhone.style.display = "block";
-//     return false;
-//   }
-
-//   // check if plan is selected
-//   const selectedPlan = monthly.querySelector("input:checked");
-//   if (!selectedPlan) {
-//     alert("Please select a plan.");
-//     return false;
-//   }
-
-//   // check if add-ons are selected
+// #############################################
 

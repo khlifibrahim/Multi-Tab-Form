@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,7 +48,7 @@
         </div>
         <form action="" id="form">
             <div class="rightbar">
-                <div class="step step1" id="step1">
+                <div class="step step1 active" id="step1">
                     <div class="content step1">
                         <div class="containe">
                             <h2>Personal info</h2>
@@ -86,22 +86,23 @@
                             <p>You have the option of monthly or yearly billing.
                             </p>
                             <div class="cards monthly">
-                                <div class="card card-1" onclick="selectPlan('1')">
+                                <div class="card card-1" >
+                                    <!-- onclick="selectPlan('1')" -->
                                     <input type="checkbox" name="billing" id="card-input">
                                     <img src="assets/images/icon-arcade.svg" alt="">
-                                    <p>Arcade</p>
+                                    <p class="plan-name">Arcade</p>
                                     <p id="price" class="price" data-price="price">$9/mo</p>
                                 </div>
-                                <div class="card card-2" onclick="selectPlan('2')">
+                                <div class="card card-2" >
                                     <input type="radio" name="billing" id="card-input">
                                     <img src="assets/images/icon-advanced.svg" alt="">
-                                    <p>Advanced</p>
+                                    <p class="plan-name">Advanced</p>
                                     <p id="price" class="price" data-price="price">$12/mo</p>
                                 </div>
-                                <div class="card card-3" onclick="selectPlan('3')">
+                                <div class="card card-3" >
                                     <input type="radio" name="billing" id="card-input">
                                     <img src="assets/images/icon-pro.svg" alt="">
-                                    <p>Pro</p>
+                                    <p class="plan-name">Pro</p>
                                     <p id="price" class="price" data-price="price">$15/mo</p>
                                 </div>
                             </div>
@@ -126,8 +127,8 @@
                                     <input type="checkbox" name="" id="online-service">
                                     <label for="check_pick"></label>
                                     <div class="ckeck_details">
-                                        <h2>Online service</h2>
-                                        <p>Access to multiplayer games</p>
+                                        <h2 class="plan-name">Online service</h2>
+                                        <p class="ex-price">Access to multiplayer games</p>
                                     </div>
                                     <p class="price" data-charge="charge">+$1/mo</p>
                                 </div> 
@@ -135,17 +136,17 @@
                                     <input type="checkbox" name="" id="larger-storage">
                                     <label for="check_pick"></label>
                                     <div class="ckeck_details">
-                                        <h2>Larger storage</h2>
-                                        <p>Extra 1TB of cloud save</p>
+                                        <h2 class="plan-name">Larger storage</h2>
+                                        <p class="ex-price">Extra 1TB of cloud save</p>
                                     </div>
                                     <p class="price" data-charge="charge">+$2/mo</p>
                                 </div>
-                                <div class="card card-3">
+                                <div class="card card-3 active">
                                     <input type="checkbox" name="" id="cust-profile">
                                     <label for="check_pick"></label>
                                     <div class="ckeck_details">
-                                        <h2>Customizable Profile</h2>
-                                        <p>Custom theme on your profile</p>
+                                        <h2 class="plan-name">Customizable Profile</h2>
+                                        <p class="ex-price">Custom theme on your profile</p>
                                     </div>
                                     <p class="price" data-charge="charge">+$2/mo</p>
                                 </div>
@@ -161,30 +162,29 @@
                             <div class="checkout">
                                 <div class="selected_plan">
                                     <div class="plan_name">
-                                        <p>Arcade</p>
-                                        <br><p><a href="">change</a></p>
+                                        <p></p>
+                                        <br><p class="change">change</p>
                                     </div>
-                                    
-                                    <div class="price">$12/mo</div>
+                                    <div class="price"></div>
                                 </div>
                                 <div class="selected_addons">
-                                    <div class="addons addons-1">
-                                        <p></p>
+                                    <!-- <div class="addons addons-1">
+                                        <p>Online service</p>
                                         <p class="price">1$/mo</p>
                                     </div>
                                     <div class="addons addons-2">
-                                        <p></p>
+                                        <p>Larger storage</p>
                                         <p class="price">1$/mo</p>
                                     </div>
                                     <div class="addons addons-3">
-                                        <p></p>
+                                        <p>Customizable Profile</p>
                                         <p class="price">1$/mo</p>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="total">
                                 <p>Total (per <span>month</span>)</p>
-                                <p id="total-price">+$12/mo</p>
+                                <p id="total-price" >+$0/mo</p>
                             </div>
                         </div>
                     </div>
@@ -210,5 +210,6 @@
 
     <!-- scripts -->
     <script src="assets/js/app.js"></script>
+    <!-- <script src="assets/js/appOld.js"></script> -->
 </body>
 </html>

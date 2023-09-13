@@ -189,11 +189,11 @@
         /* background-color: var(--Strawberry-red); */
     }
      .card.active {
-        border-color: var(--Purplish-blue);
+        border-color: var(--Purplish-blue) !important;
         background-color: var(--Magnolia);
     }
     #active {
-        border-color: var(--Purplish-blue);
+        border-color: var(--Purplish-blue) !important;
         background-color: var(--Magnolia);
     }
     .step2 .containe .cards .card input {
@@ -353,6 +353,15 @@
         background-color: var(--Magnolia);
         border-radius: 10px;
         padding: 1rem;
+    }
+    .step4 .change {
+        text-decoration: underline;
+        color: var(--Cool-gray) !important;
+        font-size: 16px !important;
+        cursor: pointer;
+    }
+    .step4 .change:hover {
+        color: var(--Purplish-blue) !important;
     }
     .step4 .selected_plan, 
     .step4 .selected_addons, 
